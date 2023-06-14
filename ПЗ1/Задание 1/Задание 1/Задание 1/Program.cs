@@ -93,7 +93,7 @@ namespace MeasuringDevice
 
         public void StartCollecting()
         {
-            controller = DeviceController.StartDevice();
+            controller = DeviceController.StartDevice(measurementType);
             GetMeasurements();
         }
 
@@ -138,10 +138,10 @@ namespace DeviceController
     {
         private DeviceType deviceType;
         private Random rnd = new Random();
-        public static DeviceController StartDevice()
+        public static DeviceController StartDevice(DeviceType deviceType)
         {
             DeviceController device = new();
-            device.deviceType = DeviceType.LENGTH;
+            device.deviceType = deviceType;
             return device;
         }
 
