@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Задание_3
 {
-    internal class Item
+    internal class Item : Iitem
     {
+        public string Name { get ; set ; }
+        public Itype Type { get ; set ; }
+        public int Price { get; set; }
     }
 }

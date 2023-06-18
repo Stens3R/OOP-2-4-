@@ -8,5 +8,10 @@ namespace Задание_3
 {
     internal interface Itype
     {
+        string Name { get; set; }
+        int CountItems { get; set; }
+        IEnumerable<Iitem> GetAllItems();
+
+        Check Sell(Iitem item);
     }
 }

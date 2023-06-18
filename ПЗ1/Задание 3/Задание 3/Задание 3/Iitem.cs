@@ -8,5 +8,8 @@ namespace Задание_3
 {
     internal interface Iitem
     {
+        string Name { get; set; }
+        Itype Type { get; set; }
+        int Price { get; set; }
     }
 }

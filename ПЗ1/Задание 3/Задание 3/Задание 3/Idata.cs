@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Задание_3
 {
-    internal interface Idata
+    internal interface Idata<T>
     {
+        IEnumerable<T> ReadAll();
+        void Add(T item);
+        void Remove(T item);
     }
 }
