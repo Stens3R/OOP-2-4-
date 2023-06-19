@@ -41,6 +41,12 @@ namespace Задание_1_winforms
         {
             metricValueBox.Text = A.MetricValue().ToString();
             imperialValueBox.Text = A.ImperialValue().ToString();
+            int[] arr = A.GetRawData();
+            for(int i = 0; i < 10; i++)
+            {
+                dataGridView1.Rows[i].Cells[0].Value = arr[i];
+            }
+            A.StopCollecting();
         }
     }
     namespace MeasuringDevice
