@@ -16,14 +16,16 @@ namespace Задание_1_winforms
         public Form1()
         {
             InitializeComponent();
-            dataGridView2.RowCount = 10;
+            //dataGridView2.RowCount = 10;
             dataGridView1.RowCount = 10;
-            dataGridView2.ColumnCount = 1;
+            //dataGridView2.ColumnCount = 1;
             dataGridView1.ColumnCount = 1;
 
+            radioButton_mass_device.Checked = true;
+            radioButton_imperial_value.Checked = true;
         }
 
-        MeasureMassDevice A = new MeasureMassDevice(Units.Metric);
+        MeasureDataDevice A;
 
 
         private void start_colection_button_Click(object sender, EventArgs e)
@@ -34,6 +36,7 @@ namespace Задание_1_winforms
 
         private void stop_colection_button_Click(object sender, EventArgs e)
         {
+            A.NewMeasurementTaken -= device_NewMeasurementTaken;
             A.StopCollecting();
         }
 
@@ -41,12 +44,49 @@ namespace Задание_1_winforms
         {
             metricValueBox.Text = A.MetricValue().ToString();
             imperialValueBox.Text = A.ImperialValue().ToString();
+            most_recent_valueTextBox.Text = A.mostRecentMeasure.ToString();
             int[] arr = A.GetRawData();
             for(int i = 0; i < 10; i++)
             {
                 dataGridView1.Rows[i].Cells[0].Value = arr[i];
             }
             A.StopCollecting();
+        }
+
+        private void create_class_button_Click(object sender, EventArgs e)
+        {
+            Units value;
+            switch (radioButton_metric_value.Checked)
+            {
+                case true:
+                    {
+                        value = Units.Metric;
+                        break;
+                    }
+                default:
+                    {
+                        value = Units.Imperial;
+                        break;
+                    }
+            }
+            switch (radioButton_mass_device.Checked)
+            {
+                case true:
+                    {
+                        A = new MeasureMassDevice(value);
+                        break;
+                    }
+                default:
+                    {
+                        A = new MeasureLengthDevice(value);
+                        break;
+                    }
+            }
+        }
+
+        private void destroy_class_button_Click(object sender, EventArgs e)
+        {
+            A.Dispose();
         }
     }
     namespace MeasuringDevice
@@ -206,7 +246,7 @@ namespace Задание_1_winforms
                 dataCollector.RunWorkerAsync();
 
                 ProgressChangedEventHandler progressChangedEventHandler = DataCollector_ProgressChanged;
-                dataCollector.ProgressChanged += DataCollector_ProgressChanged;
+                dataCollector.ProgressChanged += progressChangedEventHandler;
 
             }
 
