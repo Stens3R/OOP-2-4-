@@ -100,7 +100,7 @@ namespace MeasuringDevice
                 Random timer = new Random();
                 while (controller != null)
                 {
-                    System.Threading.Thread.Sleep(timer.Next(1000, 5000));
+                    System.Threading.Thread.Sleep(timer.Next(500, 1000));
                     dataCaptured[x] = controller != null ?
                         controller.TakeMeasurement() : dataCaptured[x];
                     mostRecentMeasure = dataCaptured[x];

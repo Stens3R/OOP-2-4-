@@ -51,5 +51,10 @@ namespace Задание_3
         {
             return Name;
         }
+
+        Icheck Itype.Sell(Iitem item)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

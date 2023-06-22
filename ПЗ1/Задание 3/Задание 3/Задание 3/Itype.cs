@@ -12,6 +12,6 @@ namespace Задание_3
         int CountItems { get; set; }
         IEnumerable<Iitem> GetAllItems();
 
-        Check Sell(Iitem item);
+        Icheck Sell(Iitem item);
     }
 }
