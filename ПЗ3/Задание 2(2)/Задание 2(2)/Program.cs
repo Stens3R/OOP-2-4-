@@ -1,5 +1,5 @@
 ﻿using System;
-
+// Патерн поведения (наблюдатель)
 PhysicalLightSensor sensor = new PhysicalLightSensor();
 LightSensorProcessor processor = new LightSensorProcessor();
 Flashlight flashlight = new Flashlight();
